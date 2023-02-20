@@ -17,4 +17,3 @@ This is a simple RESTful API built using Node.js and PostgreSQL.
 ## Author
 
 oliviertech
-
