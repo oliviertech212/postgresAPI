@@ -1,7 +1,6 @@
-// import { Client } from "pg";
-const { Client } = require("pg");
+import { Client } from "pg";
 
-const dotenv = require("dotenv");
+import dotenv from "dotenv";
 
 dotenv.config();
 
@@ -13,5 +12,9 @@ const client = new Client({
   database: process.env.DB,
 });
 
-// export default client;
-module.exports = client;
+const connect = async () => {
+  await client.connect();
+  console.log("Connected to Postgres");
+};
+
+export { connect, client };
