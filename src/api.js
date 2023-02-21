@@ -49,6 +49,26 @@ app.post("/user/post", (req, res) => {
   });
 });
 
+app.put("/update/:id", (req, res) => {
+  const user = req.body;
+
+  const updateQuery = `update users  
+    set  "firstName"='${user.firstName}',
+         "lastName"='${user.lastName}',
+         "location" = '${user.location}'
+           where id=${user.id}
+    `;
+
+  client.query(updateQuery, (err, result) => {
+    if (!err) {
+      res.send({ status: "success", message: "update was successful" });
+    } else {
+      console.log(err);
+      res.send({ status: "fail", error: err.message });
+    }
+  });
+});
+
 connect();
 
 app.listen(3000, () => {
