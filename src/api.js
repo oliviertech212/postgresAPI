@@ -69,6 +69,20 @@ app.put("/update/:id", (req, res) => {
   });
 });
 
+// delete user
+app.delete("/delete/:id", (req, res) => {
+  let insertQuery = `delete from users where id=${req.params.id}`;
+
+  client.query(insertQuery, (err, result) => {
+    if (!err) {
+      res.send({ status: "success", message: "user deleted successful" });
+    } else {
+      console.log(err);
+      res.send({ status: "fail", error: err.message });
+    }
+  });
+});
+
 connect();
 
 app.listen(3000, () => {
